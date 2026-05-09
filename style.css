@@ -82,3 +82,42 @@ ul {
 
     padding: 0;
 }
+/* Individual task item */
+li {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 10px;
+
+    margin-bottom: 10px;
+
+    background-color: #f4f4f4;
+
+    border-radius: 5px;
+}
+
+/*Completed task style */
+.completed {
+    text-decoration: line-through;
+
+    opacity: 0.6;
+}
+
+/*Delete button */
+.delete-btn {
+
+    background-color: crimson;
+
+    color: white;
+
+    border: none;
+
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
