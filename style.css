@@ -39,3 +39,46 @@ body {
 h1 {
     text-align: center;
 }
+/* input section layout */
+.input-section {
+    display: flex;
+    
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+/*input styling */
+input {
+    flex: 1;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+}
+
+/*Button styling */
+button {
+    padding: 10px 15px;
+
+    border: none;
+
+    background-color: black;
+
+    color: white;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+/* Remove list bullets */
+ul {
+    list-style: none;
+
+    padding: 0;
+}

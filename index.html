@@ -19,13 +19,35 @@
 
 <body>
 
-    <!--Main container-->
+    <!--Main app container-->
     <div class="container">
 
         <!--App Title-->
         <h1>TaskFlow</h1>
 
+    <!--input section-->
+    <div class="input-section">
+
+        <!--Task input-->
+        <input
+            type="text"
+            id="taskinput"
+            placeholder="Enter a task"
+
+    />
+
+    <!--Add button-->
+    <button id="addButton">
+        Add
+    </button>
+
+
     </div>
+    
+    <!--Task List-->
+    <ul id="tasklist"></ul>
+    
+</div>
 
     <!--Connecting JavaScript-->
     <script src="app.js"></script>
