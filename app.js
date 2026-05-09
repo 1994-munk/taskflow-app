@@ -21,7 +21,7 @@ const saveTasks =() => {
 
 
 // Function to create task
-const createTask = (taskText) => {
+const createTask = (taskObject) => {
 
     // Create list item
     const li = document.createElement("li");
@@ -30,7 +30,7 @@ const createTask = (taskText) => {
     const span = document.createElement("span");
 
     // Add text into span
-    span.textContent = taskText;
+    span.textContent = taskObject.text;
 
     // Create delete button
     const deleteButton = document.createElement("button");
@@ -40,6 +40,12 @@ const createTask = (taskText) => {
 
     // Add CSS class
     deleteButton.classList.add("delete-btn");
+
+    //Check completed state
+    if (taskObject.completed){
+
+        li.classList.add("completed");
+    }
 
     // Add span into list item
     li.appendChild(span);
@@ -54,17 +60,33 @@ const createTask = (taskText) => {
     // Toggle completed task
     span.addEventListener("click", () => {
 
+        //Toggle CSS class 
         li.classList.toggle("completed");
+
+        //Update object value 
+        taskObject.completed=!taskObject.completed;
+
+        //Save updated tasks
     });
 
 
     // Delete task
     deleteButton.addEventListener("click", () => {
 
+        //Remove from page
         li.remove();
+        //Remove from tasks array
+        tasks = tasks.filter((task) => {
+
+            return task.id !== taskObject.id;
+
+        });
+
+        //Save updated tasks
+        saveTasks();
     });
 
-};
+
 
 
 // Add button click event
@@ -80,10 +102,19 @@ addButton.addEventListener("click", () => {
     }
 
     // Create task
-    createTask(taskText);
+    createTask(taskObject);
 
     // Add task to array 
-    tasks.push(taskText);
+    const taskObject ={
+        id :Date.now(),
+
+        text: taskText,
+
+        completed: false
+    };
+  
+    //Add object into tasks array
+    tasks.push(taskObject);
 
     //Save tasks
     saveTasks();
@@ -109,4 +140,5 @@ if (savedTasks){
         
         createTask(task);
     });
+
 }
