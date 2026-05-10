@@ -67,6 +67,7 @@ const createTask = (taskObject) => {
         taskObject.completed=!taskObject.completed;
 
         //Save updated tasks
+        saveTasks();
     });
 
 
@@ -87,10 +88,10 @@ const createTask = (taskObject) => {
     });
 
 
+};
 
-
-// Add button click event
-addButton.addEventListener("click", () => {
+// Function to add task
+const addTask = () => {
 
     // Get input text
     const taskText = taskInput.value;
@@ -99,30 +100,54 @@ addButton.addEventListener("click", () => {
     if (taskText === "") {
 
         return;
-    }
+    };
 
-    // Create task
+    //Create task object 
+    const taskObject={
+
+        id: Date.now(),
+
+        text:taskText,
+
+        completed :false
+
+    };
+
+    //Create task on page
     createTask(taskObject);
 
-    // Add task to array 
-    const taskObject ={
-        id :Date.now(),
-
-        text: taskText,
-
-        completed: false
-    };
-  
-    //Add object into tasks array
+    //Ad object into tasks array
     tasks.push(taskObject);
 
     //Save tasks
     saveTasks();
 
+    //clear input
+    taskInput.value="";
 
-    // Clear input
-    taskInput.value = "";
+};  
+
+
+
+// Add button click event
+addButton.addEventListener("click",() =>{
+
+    addTask();
+
 });
+
+
+//Enter key support
+taskInput.addEventListener("keydown",(event) => {
+    
+    // Check if enter key pressed 
+    if (event.key=== "Enter") {
+
+        addTask();
+    }
+});
+    
+   
 
 //Get saved tasks
 const savedTasks=JSON.parse(
