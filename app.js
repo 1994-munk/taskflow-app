@@ -10,6 +10,9 @@ const addButton = document.getElementById("addButton");
 // Get task list
 const taskList = document.getElementById("taskList");
 
+//Get task counter 
+const taskCount =document.getElementById("taskCount");
+
 //Save tasks to local storage 
 const saveTasks =() => {
 
@@ -17,6 +20,14 @@ const saveTasks =() => {
         "tasks",
         JSON.stringify(tasks)
     );
+};
+
+//Update task counter 
+
+const updateTaskCount= () => {
+    
+    taskCount.textContent =
+    `Tasks ; ${tasks.length}`;
 };
 
 
@@ -83,6 +94,9 @@ const createTask = (taskObject) => {
 
         });
 
+        //Update counter
+        updateTaskCount();
+
         //Save updated tasks
         saveTasks();
     });
@@ -118,6 +132,9 @@ const addTask = () => {
 
     //Ad object into tasks array
     tasks.push(taskObject);
+
+    //Update counter
+    updateTaskCount();
 
     //Save tasks
     saveTasks();
@@ -165,5 +182,7 @@ if (savedTasks){
         
         createTask(task);
     });
+    // Update counter
+    updateTaskCount();
 
 }

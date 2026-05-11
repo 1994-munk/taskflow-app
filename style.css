@@ -121,3 +121,13 @@ li {
 
     cursor: pointer;
 }
+
+/*Task counter */
+#taskCount{
+
+    text-align: center;
+
+    color: gray;
+
+    margin-bottom: 20px;
+}
