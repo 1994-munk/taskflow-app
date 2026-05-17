@@ -131,3 +131,18 @@ li {
 
     margin-bottom: 20px;
 }
+/* filter button container */
+.filter-buttons{
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+/*Filter buttons */
+.filter-buttons button{
+
+    flex: 1;
+}

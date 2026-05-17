@@ -13,6 +13,13 @@ const taskList = document.getElementById("taskList");
 //Get task counter 
 const taskCount =document.getElementById("taskCount");
 
+//filter buttons
+const allBtn=document.getElementById("allBtn");
+
+const completeBtn=document.getElementById("completeBtn");
+
+const pendingBtn= document.getElementById("pendingBtn");
+
 //Save tasks to local storage 
 const saveTasks =() => {
 
@@ -85,8 +92,7 @@ const createTask = (taskObject) => {
     // Delete task
     deleteButton.addEventListener("click", () => {
 
-        //Remove from page
-        li.remove();
+    
         //Remove from tasks array
         tasks = tasks.filter((task) => {
 
@@ -97,6 +103,10 @@ const createTask = (taskObject) => {
         //Update counter
         updateTaskCount();
 
+        //Re-render tasks
+        renderTasks();
+
+
         //Save updated tasks
         saveTasks();
     });
@@ -104,6 +114,18 @@ const createTask = (taskObject) => {
 
 };
 
+//Render tasks
+const renderTasks= (filteredTasks) => {
+    
+    //Clear existing tasks
+    taskList.innerHTML ="";
+
+    //Loop through filtered tasks
+    filteredTasks.forEach((task) =>{
+
+        createTask(task);
+    });
+};
 // Function to add task
 const addTask = () => {
 
@@ -128,10 +150,13 @@ const addTask = () => {
     };
 
     //Create task on page
-    createTask(taskObject);
+    renderTasks(tasks);
 
     //Ad object into tasks array
     tasks.push(taskObject);
+
+    //rendertasks
+    renderTasks(tasks);
 
     //Update counter
     updateTaskCount();
@@ -163,7 +188,32 @@ taskInput.addEventListener("keydown",(event) => {
         addTask();
     }
 });
-    
+// show all tasks
+allBtn.addEventListener("click", () => {
+
+    const completedTasks = 
+        tasks.filter((task)=> {
+            
+            return task.commpleted;
+        });
+
+    renderTasks(completedTasks);    
+});
+
+//show pending tasks
+pendingBtn.addEventListener("click", () =>{
+
+    const pendingTasks = 
+        tasks.filter((task) => {
+           
+            return !task.completed;
+        });
+
+    renderTasks(pendingTasks);
+
+});
+
+
    
 
 //Get saved tasks
